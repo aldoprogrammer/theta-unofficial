@@ -1,6 +1,9 @@
+import { Button } from "@material-tailwind/react";
+
 export function Info() {
-    return (
-      <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 container mx-auto px-8 py-10 lg:py-28">
+  return (
+    <>
+      <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 container mx-auto lg:py-20">
         <div>
           <div className="text-8xl">Video Uploading site</div>
           <div className="p-8">
@@ -14,8 +17,13 @@ export function Info() {
           alt="No image"
         />
       </div>
-    );
-  }
-  
-  export default Info;
-  
+      <div className="px-14">
+        <Button className="" variant="outlined">
+          Launch App
+        </Button>
+      </div>
+    </>
+  );
+}
+
+export default Info;

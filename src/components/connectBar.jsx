@@ -39,7 +39,7 @@ const ConnectBar = () => {
                   Theta hack
                 </a>
                 <div class="flex items-center gap-4">
-                  <div class="hidden mr-4 lg:block">
+                  <div class=" mr-4">
                     <ConnectButton client={client} wallets={wallets} />
                   </div>
                 </div>
