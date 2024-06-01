@@ -5,7 +5,7 @@ export function Info() {
     <>
       <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 container mx-auto lg:py-20">
         <div>
-          <div className="text-8xl">Video Uploading site</div>
+          <div className="md:text-8xl text-5xl ">Video Uploading site</div>
           <div className="p-8">
             A new way to watch contents and upload and videos are sensored for
             users{" "}
@@ -17,7 +17,7 @@ export function Info() {
           alt="No image"
         />
       </div>
-      <div className="px-14">
+      <div className="px-14 py-6">
         <Button className="" variant="outlined">
           Launch App
         </Button>
