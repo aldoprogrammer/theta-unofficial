@@ -1,11 +1,12 @@
-import React from 'react'
-
-const Home = () => {
-  return (
-    <div>
-      Home
-    </div>
-  )
+import { Info } from "../components/Info";
+import ConnectBar from "../components/connectBar";
+function Home() {
+  return ( 
+    <>
+      <ConnectBar/>
+      <Info/>
+    </>
+   );
 }
 
-export default Home
+export default Home;
