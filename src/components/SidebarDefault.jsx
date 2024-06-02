@@ -5,11 +5,10 @@ import {
   List,
   ListItem,
   ListItemPrefix,
-  ListItemSuffix,
-  Chip,
   Accordion,
   AccordionHeader,
   AccordionBody,
+  Avatar,
 } from "@material-tailwind/react";
 import {
   PresentationChartBarIcon,
@@ -20,21 +19,24 @@ import {
   PowerIcon,
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
- 
+
+const subscriptionData = [
+  { id: 1, name: "John Doe", avatar: "https://docs.material-tailwind.com/img/face-2.jpg", description: "Software Engineer" },
+  { id: 2, name: "Jane Smith", avatar: "https://docs.material-tailwind.com/img/face-1.jpg", description: "Graphic Designer" },
+  { id: 3, name: "Michael Johnson", avatar: "https://docs.material-tailwind.com/img/face-3.jpg", description: "Project Manager" },
+  { id: 4, name: "Emily Davis", avatar: "https://docs.material-tailwind.com/img/face-4.jpg", description: "Data Scientist" },
+  { id: 5, name: "William Brown", avatar: "https://docs.material-tailwind.com/img/face-5.jpg", description: "Marketing Specialist" }
+];
+
 export function SidebarDefault() {
   const [open, setOpen] = React.useState(0);
- 
+
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
- 
+
   return (
     <Card className="h-[calc(100vh-2rem)] shadow-none w-full max-w-[20rem] p-4 shadow-blue-gray-900/5">
-      {/* <div className="mb-2 p-4">
-        <Typography variant="h5" color="blue-gray">
-          Sidebar
-        </Typography>
-      </div> */}
       <List>
         <Accordion
           open={open === 1}
@@ -51,7 +53,7 @@ export function SidebarDefault() {
                 <PresentationChartBarIcon className="h-5 w-5" />
               </ListItemPrefix>
               <Typography color="blue-gray" className="mr-auto font-normal">
-                Dashboard
+                Home
               </Typography>
             </AccordionHeader>
           </ListItem>
@@ -61,7 +63,7 @@ export function SidebarDefault() {
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
-                Analytics
+                Popular
               </ListItem>
               <ListItem>
                 <ListItemPrefix>
@@ -93,7 +95,7 @@ export function SidebarDefault() {
                 <ShoppingBagIcon className="h-5 w-5" />
               </ListItemPrefix>
               <Typography color="blue-gray" className="mr-auto font-normal">
-                E-Commerce
+                Popular
               </Typography>
             </AccordionHeader>
           </ListItem>
@@ -113,35 +115,35 @@ export function SidebarDefault() {
               </ListItem>
             </List>
           </AccordionBody>
+          <ListItem>
+          <ListItemPrefix>
+                <ShoppingBagIcon className="h-5 w-5" />
+              </ListItemPrefix>
+          <Typography color="blue-gray" className="mr-auto font-normal">
+                Categories
+              </Typography>
+          </ListItem>
+          <ListItem>
+          <ListItemPrefix>
+                <ShoppingBagIcon className="h-5 w-5" />
+              </ListItemPrefix>
+          <Typography color="blue-gray" className="mr-auto font-normal">
+                Favorite
+              </Typography>
+          </ListItem>
+          
         </Accordion>
         <hr className="my-2 border-blue-gray-50" />
-        <ListItem>
-          <ListItemPrefix>
-            <InboxIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Inbox
-          <ListItemSuffix>
-            <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
-          </ListItemSuffix>
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <UserCircleIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Profile
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <Cog6ToothIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Settings
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <PowerIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Log Out
-        </ListItem>
+        <h1 className="font-bold">Subscription</h1>
+        {subscriptionData.map((subscriber) => (
+          <div key={subscriber.id} className="flex items-center gap-4 cursor-pointer py-2">
+            <Avatar src={subscriber.avatar} alt={subscriber.name} />
+            <div>
+              <Typography variant="h6">{subscriber.name}</Typography>
+              {/* <Typography variant="small" color="gray">{subscriber.description}</Typography> */}
+            </div>
+          </div>
+        ))}
       </List>
     </Card>
   );
