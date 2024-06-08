@@ -1,4 +1,6 @@
 import { Button } from "@material-tailwind/react";
+import { Outlet, Link } from "react-router-dom";
+
 
 export function Info() {
   return (
@@ -18,10 +20,13 @@ export function Info() {
         />
       </div>
       <div className="px-14 py-6">
+      <Link to="/dashboard">
         <Button className="" variant="outlined">
           Launch App
         </Button>
+      </Link>
       </div>
+      <Outlet />
     </>
   );
 }
