@@ -38,7 +38,7 @@ function User() {
 
   return (
     <div className="m-6">
-      <div className="flex justify-between px-32 py-12">
+      <div className="flex justify-between lg:px-32 py-12 ">
         <div className="flex border-slate-950	rounded-full	border-2  bg-blue-500 text-white	">
           <button
             onClick={showTokenDetails}

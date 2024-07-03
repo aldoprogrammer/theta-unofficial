@@ -7,10 +7,10 @@ export function Info() {
     <>
       <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 container mx-auto lg:py-20">
         <div>
-          <div className="md:text-8xl text-5xl ">Video Uploading site</div>
-          <div className="p-8">
-            A new way to watch contents and upload and videos are sensored for
-            users{" "}
+          <div className="md:text-8xl text-5xl ">DeCPLMax </div>
+          <div className="p-4">
+
+          Modern entrepreneurs seek a secure and profitable video advertising and affiliate marketing platform to effectively market their products, expand their customer base, and generate quality leads. Existing platforms that rely on pay-per-click or cost-per-impression models fail to ensure lead quality, relevance, and proper content ownership, resulting in inefficient conversions and inadequate user incentives. DeCPLMax addresses these issues, offering a comprehensive solution            users{" "}
           </div>
         </div>
         <img
@@ -19,7 +19,7 @@ export function Info() {
           alt="No image"
         />
       </div>
-      <div className="px-14 py-6">
+      <div className="px-14 py-4">
       <Link to="/dashboard">
         <Button className="" variant="outlined">
           Launch App
