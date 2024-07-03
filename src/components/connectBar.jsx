@@ -2,6 +2,7 @@ import React from "react";
 import { ConnectButton } from "thirdweb/react";
 import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { createThirdwebClient, defineChain } from "thirdweb";
+import DeCPLMax from "../assets/DeCPLMax.png";
 
 const client = createThirdwebClient({
   clientId: "379ff66a369f3e12df6535c7008603a5",
@@ -36,7 +37,12 @@ const ConnectBar = () => {
                   href="#"
                   class="mr-4 block cursor-pointer py-1.5 font-sans text-base font-medium leading-relaxed text-inherit antialiased"
                 >
-                  Theta hack
+                  <img
+                    src={DeCPLMax}
+                    alt=""
+                    srcset="DeCPLmax Logo"
+                    className="h-20 w-32 object-cover object-center"
+                  />
                 </a>
                 <div class="flex items-center gap-4">
                   <div class=" mr-4">
