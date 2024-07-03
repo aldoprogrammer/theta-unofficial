@@ -43,8 +43,11 @@ export function Topbar() {
           Logo
         </Typography>
         <div className="hidden lg:block">{navList}</div>
-        <div className="flex items-center gap-x-4">
-          <label className="rounded-full border border-blue-500 px-4 py-2 cursor-pointer">
+        <div className="flex items-center 
+        gap-x-4">
+          <label className="rounded-full
+           border border-blue-500 px-3 text-[12px]
+          md:px-4 py-2 cursor-pointer">
             <input type="file" accept="video/*" className="hidden" />
             Add Video
           </label>
@@ -57,7 +60,9 @@ export function Topbar() {
         </div>
         <IconButton
           variant="text"
-          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          className="ml-auto h-6 w-6 
+          text-inherit hover:bg-transparent 
+          focus:bg-transparent active:bg-transparent lg:hidden"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
         >
@@ -96,12 +101,12 @@ export function Topbar() {
       <MobileNav open={openNav}>
         <div className="container mx-auto">
           {navList}
-          <div className="flex items-center gap-x-1">
+          {/* <div className="flex items-center gap-x-1">
             <Chip variant="outlined" value="Add Video" className="rounded-full" />
             <Button fullWidth variant="gradient" size="sm" className="">
               <span>Sign in</span>
             </Button>
-          </div>
+          </div> */}
         </div>
       </MobileNav>
     </Navbar>

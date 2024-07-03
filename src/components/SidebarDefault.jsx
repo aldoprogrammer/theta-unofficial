@@ -36,7 +36,7 @@ export function SidebarDefault() {
   };
 
   return (
-    <Card className="h-[calc(100vh-2rem)] shadow-none w-full max-w-[20rem] p-4 shadow-blue-gray-900/5">
+    <Card className="h-[calc(100vh-2rem)] shadow-none w-full max-w-[20rem] p-4 shadow-blue-gray-900/5 hidden md:flex">
       <List>
         <Accordion
           open={open === 1}

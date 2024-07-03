@@ -24,7 +24,7 @@ const Dashboard = () => {
             <div className='flex'>
                 <SidebarDefault />
                 <div className='flex flex-col w-full'>
-                    <div className='grid grid-cols-2 items-center p-4 border-b gap-5 border-blue-gray-200'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 items-center p-4 border-b gap-5 border-blue-gray-200'>
                         <VideoCard />
                         <VideoCard />
                     </div>
@@ -46,7 +46,7 @@ const Dashboard = () => {
                             <h1 className='text-xl font-semibold text-blue-gray-900'>
                                 Video to Try
                             </h1>
-                            <div className='grid grid-cols-3 gap-4'>
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                                 <VideoCard />
                                 <VideoCard />
                                 <VideoCard />
