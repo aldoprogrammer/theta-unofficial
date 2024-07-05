@@ -29,7 +29,7 @@ const Dashboard = () => {
                         <VideoCard />
                     </div>
                     <div className='p-4'>
-                        {/* categori list */}
+                        {/* category list */}
                         <div className='flex flex-col gap-4'>
                             <h1 className='text-xl font-semibold text-blue-gray-900'>
                                 Explore by Categories
@@ -41,10 +41,10 @@ const Dashboard = () => {
                             </div>
                         </div>
 
-                        {/* video to try */}
+                        {/* videos to try */}
                         <div className='flex flex-col mt-5'>
                             <h1 className='text-xl font-semibold text-blue-gray-900'>
-                                Video to Try
+                                Videos to Try
                             </h1>
                             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                                 <VideoCard />

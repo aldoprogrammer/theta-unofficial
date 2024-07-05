@@ -3,32 +3,53 @@ import {
   Navbar,
   MobileNav,
   Typography,
-  Button,
   IconButton,
-  Chip,
   Input,
-  Avatar,
 } from "@material-tailwind/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { ConnectButton } from "thirdweb/react";
+import { createWallet, inAppWallet } from "thirdweb/wallets";
+import { createThirdwebClient, defineChain } from "thirdweb";
+import { useNavigate } from "react-router-dom";
 
 export function Topbar() {
   const [openNav, setOpenNav] = React.useState(false);
+  const navigate = useNavigate();
 
-  React.useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false),
-    );
-  }, []);
+  const handleLogout = () => {
+    window.location.href = '/';
+  };
+  
+
+  const client = createThirdwebClient({
+    clientId: "379ff66a369f3e12df6535c7008603a5",
+  });
+
+  const myChain = defineChain({
+    id: 2442,
+    rpc: "https://polygon-zkevm-cardona.blockpi.network/v1/rpc/public",
+    nativeCurrency: {
+      name: "ETH",
+      symbol: "ETH",
+      decimals: 18,
+    },
+  });
+
+  const wallets = [
+    inAppWallet(),
+    createWallet("io.metamask"),
+    createWallet("com.coinbase.wallet"),
+    createWallet("me.rainbow"),
+  ];
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <div className="w-[400px]">
-      <Input 
-                label="Search" 
-                icon={<MagnifyingGlassIcon className="w-5 h-5 text-gray-500" />} 
-            />
-    </div>
+        <Input
+          label="Search"
+          icon={<MagnifyingGlassIcon className="w-5 h-5 text-gray-500" />}
+        />
+      </div>
     </ul>
   );
 
@@ -37,32 +58,29 @@ export function Topbar() {
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
-          href="#"
+          href="/"
           className="mr-4 cursor-pointer py-1.5 font-medium"
         >
           Logo
         </Typography>
+
         <div className="hidden lg:block">{navList}</div>
-        <div className="flex items-center 
-        gap-x-4">
-          <label className="rounded-full
-           border border-blue-500 px-3 text-[12px]
-          md:px-4 py-2 cursor-pointer">
+        <div className="flex items-center gap-x-4">
+          <label className="rounded-full border border-blue-500 px-3 text-[12px] md:px-4 py-2 cursor-pointer">
             <input type="file" accept="video/*" className="hidden" />
             Add Video
           </label>
           <div className="flex items-center gap-4 cursor-pointer">
-            <Avatar src="https://docs.material-tailwind.com/img/face-2.jpg" alt="avatar" />
-            <div>
-              <Typography variant="h6">Aldo lata soba</Typography>
-            </div>
+            <ConnectButton
+              onConnect={handleLogout} // Logout function
+              client={client}
+              wallets={wallets}
+            />
           </div>
         </div>
         <IconButton
           variant="text"
-          className="ml-auto h-6 w-6 
-          text-inherit hover:bg-transparent 
-          focus:bg-transparent active:bg-transparent lg:hidden"
+          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
         >
@@ -75,11 +93,7 @@ export function Topbar() {
               stroke="currentColor"
               strokeWidth={2}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           ) : (
             <svg
@@ -89,25 +103,13 @@ export function Topbar() {
               stroke="currentColor"
               strokeWidth={2}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           )}
         </IconButton>
       </div>
       <MobileNav open={openNav}>
-        <div className="container mx-auto">
-          {navList}
-          {/* <div className="flex items-center gap-x-1">
-            <Chip variant="outlined" value="Add Video" className="rounded-full" />
-            <Button fullWidth variant="gradient" size="sm" className="">
-              <span>Sign in</span>
-            </Button>
-          </div> */}
-        </div>
+        <div className="container mx-auto">{navList}</div>
       </MobileNav>
     </Navbar>
   );
