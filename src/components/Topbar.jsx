@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   MobileNav,
@@ -11,15 +11,27 @@ import { ConnectButton } from "thirdweb/react";
 import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { createThirdwebClient, defineChain } from "thirdweb";
 import { useNavigate } from "react-router-dom";
+import PinModal from "../modal/PinModal";
+import useConctracts from "../hooks/useContract";
 
 export function Topbar() {
   const [openNav, setOpenNav] = React.useState(false);
   const navigate = useNavigate();
+  const [showPinModal, setShowPinModal] = useState(false);
+
+  const handleSavePin = (pin) => {
+    localStorage.setItem("pin", pin); // Save the PIN to localStorage
+    navigate("/dashboard"); // Redirect to dashboard after saving PIN
+  };
+
+  const upLoadVideos = () => {
+      setShowPinModal(true); // Show the PIN modal when you want to add video
+      // Connect to the blockchain and upload to the blockchain
+  };
 
   const handleLogout = () => {
-    window.location.href = '/';
+    window.location.href = "/";
   };
-  
 
   const client = createThirdwebClient({
     clientId: "379ff66a369f3e12df6535c7008603a5",
@@ -66,10 +78,14 @@ export function Topbar() {
 
         <div className="hidden lg:block">{navList}</div>
         <div className="flex items-center gap-x-4">
-          <label className="rounded-full border border-blue-500 px-3 text-[12px] md:px-4 py-2 cursor-pointer">
-            <input type="file" accept="video/*" className="hidden" />
-            Add Video
-          </label>
+            <label className="rounded-full border border-blue-500 px-3 text-[12px] md:px-4 py-2 cursor-pointer">
+              <input type="file" accept="video/*" className="hidden" />
+              Add Video
+            </label>
+          <button onClick={upLoadVideos} className="rounded-full border border-blue-500 px-3 text-[12px] md:px-4 py-2 cursor-pointer">
+            upload Video
+          </button>
+
           <div className="flex items-center gap-4 cursor-pointer">
             <ConnectButton
               onConnect={handleLogout} // Logout function
@@ -93,7 +109,11 @@ export function Topbar() {
               stroke="currentColor"
               strokeWidth={2}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           ) : (
             <svg
@@ -103,7 +123,11 @@ export function Topbar() {
               stroke="currentColor"
               strokeWidth={2}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           )}
         </IconButton>
@@ -111,6 +135,12 @@ export function Topbar() {
       <MobileNav open={openNav}>
         <div className="container mx-auto">{navList}</div>
       </MobileNav>
+      {/* PinModal component */}
+      <PinModal
+        isOpen={showPinModal}
+        onClose={() => setShowPinModal(false)}
+        onSavePin={handleSavePin}
+      />
     </Navbar>
   );
 }

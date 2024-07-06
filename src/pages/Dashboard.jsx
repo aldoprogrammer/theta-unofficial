@@ -19,7 +19,7 @@ const categories = [
 
 const Dashboard = () => {
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col '>
             <Topbar />
             <div className='flex'>
                 <SidebarDefault />
