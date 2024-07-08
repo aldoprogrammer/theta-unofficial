@@ -10,23 +10,9 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { ConnectButton } from "thirdweb/react";
 import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { createThirdwebClient, defineChain } from "thirdweb";
-import { useNavigate } from "react-router-dom";
-import PinModal from "../modal/PinModal";
 
 export function Topbar() {
   const [openNav, setOpenNav] = React.useState(false);
-  const navigate = useNavigate();
-  const [showPinModal, setShowPinModal] = useState(false);
-
-  const handleSavePin = (pin) => {
-    localStorage.setItem("pin", pin); // Save the PIN to localStorage
-    navigate("/dashboard"); // Redirect to dashboard after saving PIN
-  };
-
-  const upLoadVideos = () => {
-      setShowPinModal(true); // Show the PIN modal when you want to add video
-      // Connect to the blockchain and upload to the blockchain
-  };
 
   const handleLogout = () => {
     window.location.href = "/";
@@ -65,7 +51,7 @@ export function Topbar() {
   );
 
   return (
-    <Navbar className="mx-auto shadow-none px-4 py-2 lg:px-8 lg:py-4">
+    <Navbar className="mx-auto shadow-none px-4 py-2 lg:px-8 lg:py-4  ">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
@@ -81,9 +67,7 @@ export function Topbar() {
               <input type="file" accept="video/*" className="hidden" />
               Add Video
             </label>
-          <button onClick={upLoadVideos} className="rounded-full border border-blue-500 px-3 text-[12px] md:px-4 py-2 cursor-pointer">
-            upload Video
-          </button>
+         
 
           <div className="flex items-center gap-4 cursor-pointer">
             <ConnectButton
@@ -133,13 +117,8 @@ export function Topbar() {
       </div>
       <MobileNav open={openNav}>
         <div className="container mx-auto">{navList}</div>
-      </MobileNav>
-      {/* PinModal component */}
-      <PinModal
-        isOpen={showPinModal}
-        onClose={() => setShowPinModal(false)}
-        onSavePin={handleSavePin}
-      />
+      </MobileNav>  
+     
     </Navbar>
   );
 }
