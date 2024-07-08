@@ -12,7 +12,6 @@ import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { createThirdwebClient, defineChain } from "thirdweb";
 import { useNavigate } from "react-router-dom";
 import PinModal from "../modal/PinModal";
-import useConctracts from "../hooks/useContract";
 
 export function Topbar() {
   const [openNav, setOpenNav] = React.useState(false);
