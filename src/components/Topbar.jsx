@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   MobileNav,
@@ -10,16 +10,13 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { ConnectButton } from "thirdweb/react";
 import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { createThirdwebClient, defineChain } from "thirdweb";
-import { useNavigate } from "react-router-dom";
 
 export function Topbar() {
   const [openNav, setOpenNav] = React.useState(false);
-  const navigate = useNavigate();
 
   const handleLogout = () => {
-    window.location.href = '/';
+    window.location.href = "/";
   };
-  
 
   const client = createThirdwebClient({
     clientId: "379ff66a369f3e12df6535c7008603a5",
@@ -54,7 +51,7 @@ export function Topbar() {
   );
 
   return (
-    <Navbar className="mx-auto shadow-none px-4 py-2 lg:px-8 lg:py-4">
+    <Navbar className="mx-auto shadow-none px-4 py-2 lg:px-8 lg:py-4  ">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
@@ -66,10 +63,12 @@ export function Topbar() {
 
         <div className="hidden lg:block">{navList}</div>
         <div className="flex items-center gap-x-4">
-          <label className="rounded-full border border-blue-500 px-3 text-[12px] md:px-4 py-2 cursor-pointer">
-            <input type="file" accept="video/*" className="hidden" />
-            Add Video
-          </label>
+            <label className="rounded-full border border-blue-500 px-3 text-[12px] md:px-4 py-2 cursor-pointer">
+              <input type="file" accept="video/*" className="hidden" />
+              Add Video
+            </label>
+         
+
           <div className="flex items-center gap-4 cursor-pointer">
             <ConnectButton
               onConnect={handleLogout} // Logout function
@@ -93,7 +92,11 @@ export function Topbar() {
               stroke="currentColor"
               strokeWidth={2}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           ) : (
             <svg
@@ -103,14 +106,19 @@ export function Topbar() {
               stroke="currentColor"
               strokeWidth={2}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           )}
         </IconButton>
       </div>
       <MobileNav open={openNav}>
         <div className="container mx-auto">{navList}</div>
-      </MobileNav>
+      </MobileNav>  
+     
     </Navbar>
   );
 }
