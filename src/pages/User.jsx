@@ -4,6 +4,8 @@ import { createThirdwebClient, defineChain } from "thirdweb";
 import React, { useState } from "react";
 import TokenBar from "../components/TokenBar";
 import NFTBar from "../components/NFTBar";
+import { Topbar } from "../components/Topbar";
+import { SidebarDefault } from "../components/SidebarDefault";
 function User() {
   const client = createThirdwebClient({
     clientId: "379ff66a369f3e12df6535c7008603a5",
@@ -37,6 +39,10 @@ function User() {
   };
 
   return (
+    <div className='flex flex-col'>
+    <Topbar />
+    <div className='flex'>
+        <SidebarDefault />
     <div className="m-6">
       <div className="flex justify-between lg:px-32 py-12 ">
         <div className="flex border-slate-950	rounded-full	border-2  bg-blue-500 text-white	">
@@ -67,6 +73,8 @@ function User() {
       
       {showDetails === "Token" && <TokenBar />}
       {showDetails === "NFT" && <NFTBar />}
+    </div>
+    </div>
     </div>
   );
 }

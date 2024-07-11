@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Button } from "@material-tailwind/react";
-import { ethers } from "ethers"; // Import ethers.js
+import { ethers } from "ethers";
 import PasswordModal from "../modal/PasswordModal";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Topbar } from "../components/Topbar";
+import { SidebarDefault } from "../components/SidebarDefault";
 
 function Swap() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -28,16 +31,29 @@ function Swap() {
     setModalOpen(false);
   };
 
-  const handlePasswordConfirm = () => {
-    // Perform any specific action upon password confirmation
-    console.log("Proceeding with swap logic after password confirmation...");
+  const handlePasswordConfirm = (password) => {
+    // Retrieve the PIN from localStorage
+    const storedPin = localStorage.getItem("pin");
+
+    // Check if the entered password matches the stored PIN
+    if (password === storedPin) {
+      toast.success("PIN correct!");
+      // Proceed with the swap logic
+      console.log("Proceeding with swap logic after password confirmation...");
+    } else {
+      toast.error("PIN incorrect!");
+    }
 
     // Close the modal
     setModalOpen(false);
   };
 
   return (
-    <div className="bg-blue-gray-100 h-screen p-8">
+    <div className='flex flex-col'>
+    <Topbar />
+    <div className='flex'>
+        <SidebarDefault />
+    <div className="bg-white h-screen p-8 w-screen mt-14">
       <div className="text-center text-2xl">Swap Theta coins to BATs</div>
       <div className="grid place-content-center p-12">
         <div className="bg-white m-6 p-10 text-lg rounded-2xl shadow-lg shadow-blue-gray-200 ">
@@ -92,6 +108,11 @@ function Swap() {
           onConfirm={handlePasswordConfirm}
         />
       )}
+
+      {/* Toastify container */}
+      <ToastContainer />
+    </div>
+    </div>
     </div>
   );
 }

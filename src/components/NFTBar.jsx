@@ -1,16 +1,40 @@
+import React, { useState } from "react";
 import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   Typography,
-  Avatar,
-  Tooltip,
 } from "@material-tailwind/react";
-import { use } from "chai";
-import { useState } from "react";
+
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import PasswordModal from "../modal/PasswordModal";
 
 function NFTBar() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleTransferClick = () => {
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
+  const handlePasswordConfirm = (password) => {
+    const storedPin = localStorage.getItem("pin");
+
+    if (password === storedPin) {
+      toast.success("PIN correct! Transfer will proceed.");
+      console.log("Proceeding with transfer logic...");
+      // Add your transfer logic here
+    } else {
+      toast.error("PIN incorrect! Transfer failed.");
+    }
+
+    setModalOpen(false);
+  };
+
   return (
     <>
       <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 container mx-auto lg:py-20">
@@ -27,12 +51,12 @@ function NFTBar() {
             />
           </CardHeader>
           <CardBody>
-            <div variant="h4" color="blue-gray">
+            <Typography variant="body" color="blue-gray">
               Theta NFT
-            </div>
-            <div variant="h4" color="blue-gray">
+            </Typography>
+            <Typography variant="h4" color="blue-gray">
               0x00000000000000
-            </div>
+            </Typography>
             <Typography
               variant="lead"
               color="gray"
@@ -41,7 +65,10 @@ function NFTBar() {
               The NFT description
             </Typography>
           </CardBody>
-          <div className="block p-3 bg-black rounded-xl text-white text-center shadow-lg shadow-blue-gray-200 cursor-pointer">
+          <div
+            className="block p-3 bg-black rounded-xl text-white text-center shadow-lg shadow-blue-gray-200 cursor-pointer"
+            onClick={handleTransferClick}
+          >
             Transfer
           </div>
         </Card>
@@ -59,12 +86,12 @@ function NFTBar() {
             />
           </CardHeader>
           <CardBody>
-            <div variant="h4" color="blue-gray">
+            <Typography variant="body" color="blue-gray">
               Theta NFT
-            </div>
-            <div variant="h4" color="blue-gray">
+            </Typography>
+            <Typography variant="h4" color="blue-gray">
               0x00000000000000
-            </div>
+            </Typography>
             <Typography
               variant="lead"
               color="gray"
@@ -73,12 +100,25 @@ function NFTBar() {
               The NFT description
             </Typography>
           </CardBody>
-          <div className="block p-3 bg-black rounded-xl text-white text-center shadow-lg shadow-blue-gray-200 cursor-pointer">
+          <div
+            className="block p-3 bg-black rounded-xl text-white text-center shadow-lg shadow-blue-gray-200 cursor-pointer"
+            onClick={handleTransferClick}
+          >
             Transfer
           </div>
         </Card>
       </div>
+
+      {modalOpen && (
+        <PasswordModal
+          onClose={handleModalClose}
+          onConfirm={handlePasswordConfirm}
+        />
+      )}
+
+      <ToastContainer />
     </>
   );
 }
+
 export default NFTBar;
