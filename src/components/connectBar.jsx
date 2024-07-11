@@ -31,6 +31,7 @@ const ConnectBar = () => {
   const navigate = useNavigate();
   const [showPinModal, setShowPinModal] = useState(false);
   const [pinExists, setPinExists] = useState(false);
+  const [isPinChecked, setIsPinChecked] = useState(false);
 
   useEffect(() => {
     // Check if PIN exists in localStorage
@@ -38,14 +39,17 @@ const ConnectBar = () => {
     if (storedPin) {
       setPinExists(true);
     }
+    setIsPinChecked(true); // Indicate that the PIN check is complete
   }, []);
 
   const handleLogin = async () => {
-    if (!pinExists) {
-      setShowPinModal(true); // Show the PIN modal when login is clicked
-    } else {
-      // Redirect to dashboard if PIN already exists
-      navigate("/dashboard");
+    if (isPinChecked) {
+      if (!pinExists) {
+        setShowPinModal(true); // Show the PIN modal when login is clicked
+      } else {
+        // Redirect to dashboard if PIN already exists
+        navigate("/dashboard");
+      }
     }
   };
 
