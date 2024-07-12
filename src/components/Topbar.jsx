@@ -10,6 +10,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { ConnectButton } from "thirdweb/react";
 import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { createThirdwebClient, defineChain } from "thirdweb";
+import DeCPLMax from "../assets/DeCPLMax.png";
 
 export function Topbar() {
   const [openNav, setOpenNav] = React.useState(false);
@@ -58,7 +59,11 @@ export function Topbar() {
           href="/"
           className="mr-4 cursor-pointer py-1.5 font-medium"
         >
-          Logo
+          <img
+                  src={DeCPLMax}
+                  alt="DeCPLmax Logo"
+                  className="h-20 w-32 object-cover object-center"
+          />
         </Typography>
 
         <div className="hidden lg:block">{navList}</div>
