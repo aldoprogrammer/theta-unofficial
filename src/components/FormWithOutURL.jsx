@@ -25,7 +25,7 @@ function UploadWithoutURL() {
               <div class=" h-11 w-full min-w-[200px]">
               <label className="cursor-pointer">
               <input type="file" accept="video/*" className="hidden" />
-              Add Video
+              Add Vid
             </label>
               </div>
               
