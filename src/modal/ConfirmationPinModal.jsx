@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function PasswordModal({ onClose, onConfirm }) {
+function ConfirmationPinModal({ onClose, onConfirm }) {
   const [password, setPassword] = useState("");
 
   const handleConfirm = () => {
@@ -27,4 +27,4 @@ function PasswordModal({ onClose, onConfirm }) {
   );
 }
 
-export default PasswordModal;
+export default ConfirmationPinModal;

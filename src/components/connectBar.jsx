@@ -33,30 +33,30 @@ const ConnectBar = () => {
   const [pinExists, setPinExists] = useState(false);
   const [isPinChecked, setIsPinChecked] = useState(false);
 
-  useEffect(() => {
-    // Check if PIN exists in localStorage
-    const storedPin = localStorage.getItem("pin");
-    if (storedPin) {
-      setPinExists(true);
-    }
-    setIsPinChecked(true); // Indicate that the PIN check is complete
-  }, []);
+  // useEffect(() => {
+  //   // Check if PIN exists in localStorage
+  //   const storedPin = localStorage.getItem("pin");
+  //   if (storedPin) {
+  //     setPinExists(true);
+  //   }
+  //   setIsPinChecked(true); // Indicate that the PIN check is complete
+  // }, []);
 
-  const handleLogin = async () => {
-    if (isPinChecked) {
-      if (!pinExists) {
-        setShowPinModal(true); // Show the PIN modal when login is clicked
-      } else {
-        // Redirect to dashboard if PIN already exists
-        navigate("/dashboard");
-      }
-    }
-  };
+  // const handleLogin = async () => {
+  //   if (isPinChecked) {
+  //     if (!pinExists) {
+  //       setShowPinModal(true); // Show the PIN modal when login is clicked
+  //     } else {
+  //       // Redirect to dashboard if PIN already exists
+  //       navigate("/dashboard");
+  //     }
+  //   }
+  // };
 
-  const handleSavePin = (pin) => {
-    localStorage.setItem("pin", pin); // Save the PIN to localStorage
-    navigate("/dashboard"); // Redirect to dashboard after saving PIN
-  };
+  // const handleSavePin = (pin) => {
+  //   localStorage.setItem("pin", pin); // Save the PIN to localStorage
+  //   navigate("/dashboard"); // Redirect to dashboard after saving PIN
+  // };
 
   return (
     <div>
@@ -79,7 +79,7 @@ const ConnectBar = () => {
                   <ConnectButton
                     client={client}
                     wallets={wallets}
-                    onConnect={handleLogin}
+                    // onConnect={handleLogin}
                   />
                 </div>
               </div>
@@ -91,7 +91,7 @@ const ConnectBar = () => {
       <PinModal
         isOpen={showPinModal}
         onClose={() => setShowPinModal(false)}
-        onSavePin={handleSavePin}
+        // onSavePin={handleSavePin}
       />
     </div>
   );

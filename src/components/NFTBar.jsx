@@ -8,7 +8,7 @@ import {
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PasswordModal from "../modal/PasswordModal";
+import ConfirmationPinModal from "../modal/ConfirmationPinModal";
 
 function NFTBar() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -110,7 +110,7 @@ function NFTBar() {
       </div>
 
       {modalOpen && (
-        <PasswordModal
+        <ConfirmationPinModal
           onClose={handleModalClose}
           onConfirm={handlePasswordConfirm}
         />

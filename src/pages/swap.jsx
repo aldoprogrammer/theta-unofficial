@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@material-tailwind/react";
 import { ethers } from "ethers";
-import PasswordModal from "../modal/PasswordModal";
+import ConfirmationPinModal from "../modal/ConfirmationPinModal";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Topbar } from "../components/Topbar";
@@ -103,7 +103,7 @@ function Swap() {
       </div>
 
       {modalOpen && (
-        <PasswordModal
+        <ConfirmationPinModal
           onClose={handleModalClose}
           onConfirm={handlePasswordConfirm}
         />
