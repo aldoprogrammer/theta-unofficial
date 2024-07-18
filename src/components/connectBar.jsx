@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ConnectButton } from "thirdweb/react";
 import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { createThirdwebClient, defineChain } from "thirdweb";
 import DeCPLMax from "../assets/DeCPLMax.png";
 import PinModal from "../modal/PinModal";
+import SignInSignUpModal from "../modal/SignInSignUpModal";
 
 const client = createThirdwebClient({
   clientId: "379ff66a369f3e12df6535c7008603a5",
@@ -30,33 +31,14 @@ const wallets = [
 const ConnectBar = () => {
   const navigate = useNavigate();
   const [showPinModal, setShowPinModal] = useState(false);
+  const [showSignInSignUpModal, setShowSignInSignUpModal] = useState(false);
   const [pinExists, setPinExists] = useState(false);
   const [isPinChecked, setIsPinChecked] = useState(false);
 
-  // useEffect(() => {
-  //   // Check if PIN exists in localStorage
-  //   const storedPin = localStorage.getItem("pin");
-  //   if (storedPin) {
-  //     setPinExists(true);
-  //   }
-  //   setIsPinChecked(true); // Indicate that the PIN check is complete
-  // }, []);
+  const handleDashboardClick = () => {
+    setShowSignInSignUpModal(true);
+  };
 
-  // const handleLogin = async () => {
-  //   if (isPinChecked) {
-  //     if (!pinExists) {
-  //       setShowPinModal(true); // Show the PIN modal when login is clicked
-  //     } else {
-  //       // Redirect to dashboard if PIN already exists
-  //       navigate("/dashboard");
-  //     }
-  //   }
-  // };
-
-  // const handleSavePin = (pin) => {
-  //   localStorage.setItem("pin", pin); // Save the PIN to localStorage
-  //   navigate("/dashboard"); // Redirect to dashboard after saving PIN
-  // };
 
   return (
     <div>
@@ -75,13 +57,12 @@ const ConnectBar = () => {
                 />
               </a>
               <div className="flex items-center gap-4">
-                <div className="mr-4">
-                  <ConnectButton
-                    client={client}
-                    wallets={wallets}
-                    // onConnect={handleLogin}
-                  />
-                </div>
+                <button
+                  className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={handleDashboardClick}
+                >
+                  Dashboard
+                </button>
               </div>
             </div>
           </nav>
@@ -91,7 +72,11 @@ const ConnectBar = () => {
       <PinModal
         isOpen={showPinModal}
         onClose={() => setShowPinModal(false)}
-        // onSavePin={handleSavePin}
+      />
+      {/* SignInSignUpModal component */}
+      <SignInSignUpModal
+        isOpen={showSignInSignUpModal}
+        onClose={() => setShowSignInSignUpModal(false)}
       />
     </div>
   );
